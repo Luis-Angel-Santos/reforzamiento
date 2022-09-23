@@ -1,9 +1,11 @@
-fetch('https://reqres.in/api/users/1')
+fetch('https://reqres.in/api/users/24')
     .then(resp => {
-        resp.clone().json().then(user => {
-            console.log(user.data);
-        });
-        resp.json().then(user => {
-            console.log(user.data);
-        });
+        if(resp.ok){
+            return resp.json();
+        }else{
+            throw new Error('No existe el usuario :(')
+        }
+    }).catch(error => {
+        console.log('Opps, ocurrio un error :(');
+        console.log(error);
     })
